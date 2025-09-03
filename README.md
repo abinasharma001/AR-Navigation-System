@@ -7,7 +7,7 @@ Contact For Full File and APk with Documentation.
 ![Unity](https://img.shields.io/badge/Unity-2021.3+-black?logo=unity)
 ![C#](https://img.shields.io/badge/Code-C%23-239120?logo=c-sharp&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-green?logo=android&logoColor=white)
-![License](https://img.shields.io/badge/License-Apache-2.0-blue)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue)
 ![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-ff69b4)
 
 ---
