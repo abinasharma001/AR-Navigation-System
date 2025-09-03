@@ -27,7 +27,7 @@ Users can locate and navigate to major campus landmarks such as:
 ## 🚀 Features  
 - 🔎 **AR-based navigation** for accurate real-world directions  
 - 🏢 **Building-wise guidance** (Blocks, Library, Admin, etc.)  
-- 📍 **GPS + AR integration** for outdoor campus navigation  
+- 📍 **AR integration** for outdoor campus navigation  
 - 🎮 Developed in **Unity** with **C# scripting**  
 - 📱 Optimized for mobile devices (Android/iOS)  
 
