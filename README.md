@@ -33,14 +33,6 @@ Users can locate and navigate to major campus landmarks such as:
 
 ---
 
-## 🛠️ Tech Stack  
-- **Unity 3D** (Game Engine)  
-- **C#** (Scripting Language)  
-- **AR Foundation / ARCore / ARKit** (for Augmented Reality)  
-  
-
----
-
 ## 🎥 Demo  
 Here’s a quick look at the project in action:  
 
@@ -55,6 +47,13 @@ Here’s a quick look at the project in action:
    ```bash
    git clone https://github.com/abinasharma001/AR-Navigation-System.git
 
+---
+## 🛠️ Tech Stack  
+- **Unity 3D** (Game Engine)  
+- **C#** (Scripting Language)  
+- **AR Foundation / ARCore / ARKit** (for Augmented Reality)  
+  
+---
 
 
 📌 Future Enhancements
