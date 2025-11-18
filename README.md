@@ -58,7 +58,7 @@ Here’s a quick look at the project in action:
 #Demo Of Web Version Of This Project
 
 <p align="center">
-  <img src="assets/demo.gif" alt="University Virtual Campus Tour Demo" height="400"/>
+  <img src="assets/demoweb (1).gif" alt="University Virtual Campus Tour Demo" height="400"/>
 </p>
 
 
