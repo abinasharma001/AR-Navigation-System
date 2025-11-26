@@ -1,657 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MSCB University - Virtual Campus Tour</title>
-<link rel="stylesheet" href="vendor/reset.min.css">
-<style>
-/* ============================================
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MSCB University - Virtual Campus Tour</title>
+  <link rel="stylesheet" href="vendor/reset.min.css">
+  <style>
+    /* ============================================
    BEAUTIFIED 360 CAMPUS TOUR STYLES
    Mobile-First Responsive Design
    ============================================ */
 
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-body {
-  background: #000;
-  color: #fff;
-}
+    body {
+      background: #000;
+      color: #fff;
+    }
 
-/* Panorama Container */
-#pano {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-}
+    /* Panorama Container */
+    #pano {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
 
-/* ============================================
+    /* ============================================
    HEADER / TITLE BAR
    ============================================ */
-#titleBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 100%);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 70px;
-  z-index: 1000;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-}
+    #titleBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 70px;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    }
 
-#titleBar .sceneName {
-  font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  letter-spacing: 0.3px;
-  user-select: text;
-  -webkit-user-select: text;
-}
+    #titleBar .sceneName {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+      user-select: text;
+      -webkit-user-select: text;
+    }
 
-/* ============================================
+    #titleBar .title-logo {
+      height: 40px;
+      margin-right: 15px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* ============================================
    CONTROL BUTTONS (Top Right)
    ============================================ */
-.topControlButton {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  background: rgba(15,15,25,0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1001;
-  border: 1px solid rgba(255,255,255,0.1);
-  top: 10px;
-}
+    .topControlButton {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      background: rgba(15, 15, 25, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      top: 10px;
+    }
 
-.topControlButton:hover {
-  background: rgba(30,30,45,0.95);
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.2);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
+    .topControlButton:hover {
+      background: rgba(30, 30, 45, 0.95);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
 
-.topControlButton:active {
-  transform: translateY(0) scale(0.95);
-}
+    .topControlButton:active {
+      transform: translateY(0) scale(0.95);
+    }
 
-#sceneListToggle {
-  left: 10px;
-}
+    #sceneListToggle {
+      left: 10px;
+    }
 
-#autorotateToggle {
-  right: 70px;
-}
+    /* Position logic:
+       Slot 1 (Right): 10px (Contact)
+       Slot 2: 70px (Fullscreen or Autorotate)
+       Slot 3: 130px (Autorotate if Fullscreen is present)
+    */
 
-#fullscreenToggle {
-  right: 10px;
-  display: none;
-}
+    #contactToggle {
+      right: 10px;
+    }
 
-body.fullscreen-enabled #fullscreenToggle {
-  display: flex;
-}
+    #fullscreenToggle {
+      right: 70px;
+      display: none;
+    }
 
-/* Icon styling */
-.topControlButton svg.icon {
-  width: 24px;
-  height: 24px;
-  opacity: 0.9;
-  transition: opacity 0.2s;
-  flex-shrink: 0;
-}
+    #autorotateToggle {
+      right: 70px;
+      /* Default when fullscreen is hidden */
+    }
 
-.topControlButton:hover svg.icon {
-  opacity: 1;
-}
+    body.fullscreen-enabled #fullscreenToggle {
+      display: flex;
+    }
 
-.topControlButton svg.icon.off {
-  display: block;
-}
+    body.fullscreen-enabled #autorotateToggle {
+      right: 130px;
+    }
 
-.topControlButton svg.icon.on {
-  display: none;
-}
+    /* Icon styling */
+    .topControlButton svg.icon {
+      width: 24px;
+      height: 24px;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
 
-.topControlButton.enabled svg.icon.off {
-  display: none;
-}
+    .topControlButton:hover svg.icon {
+      opacity: 1;
+    }
 
-.topControlButton.enabled svg.icon.on {
-  display: block;
-}
+    .topControlButton svg.icon.off {
+      display: block;
+    }
 
-/* ============================================
+    .topControlButton svg.icon.on {
+      display: none;
+    }
+
+    .topControlButton.enabled svg.icon.off {
+      display: none;
+    }
+
+    .topControlButton.enabled svg.icon.on {
+      display: block;
+    }
+
+    /* ============================================
    SCENE LIST SIDEBAR
    ============================================ */
-#sceneList {
-  position: fixed;
-  top: 70px;
-  left: -320px;
-  width: 300px;
-  max-height: calc(100vh - 80px);
-  background: rgba(10,10,20,0.92);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border-radius: 0 16px 16px 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 999;
-  box-shadow: 4px 0 25px rgba(0,0,0,0.5);
-}
+    #sceneList {
+      position: fixed;
+      top: 70px;
+      left: -320px;
+      width: 300px;
+      max-height: calc(100vh - 80px);
+      background: rgba(10, 10, 20, 0.92);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 0 16px 16px 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      box-shadow: 4px 0 25px rgba(0, 0, 0, 0.5);
+    }
 
-#sceneList.enabled {
-  left: 0;
-}
+    #sceneList.enabled {
+      left: 0;
+    }
 
-/* Custom Scrollbar */
-#sceneList::-webkit-scrollbar {
-  width: 6px;
-}
+    /* Custom Scrollbar */
+    #sceneList::-webkit-scrollbar {
+      width: 6px;
+    }
 
-#sceneList::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.03);
-  border-radius: 3px;
-}
+    #sceneList::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 3px;
+    }
 
-#sceneList::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.15);
-  border-radius: 3px;
-  transition: background 0.2s;
-}
+    #sceneList::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
 
-#sceneList::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.25);
-}
+    #sceneList::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
 
-/* Scene List Items */
-.scenes {
-  list-style: none;
-  padding: 12px 8px;
-  margin: 0;
-}
+    /* Scene List Items */
+    .scenes {
+      list-style: none;
+      padding: 12px 8px;
+      margin: 0;
+    }
 
-.scene {
-  display: block;
-  padding: 0;
-  margin-bottom: 6px;
-  cursor: pointer;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  position: relative;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid transparent;
-}
+    .scene {
+      display: block;
+      padding: 0;
+      margin-bottom: 6px;
+      cursor: pointer;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+    }
 
-.scene::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: linear-gradient(180deg, #4c6ef5, #7048e8);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-}
+    .scene::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: linear-gradient(180deg, #4c6ef5, #7048e8);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
 
-.scene:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.15);
-  transform: translateX(4px);
-}
+    .scene:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
 
-.scene:hover::before {
-  transform: scaleY(1);
-}
+    .scene:hover::before {
+      transform: scaleY(1);
+    }
 
-.scene.current {
-  background: linear-gradient(135deg, rgba(76,110,245,0.2), rgba(112,72,232,0.2));
-  border-color: rgba(255,255,255,0.2);
-}
+    .scene.current {
+      background: linear-gradient(135deg, rgba(76, 110, 245, 0.2), rgba(112, 72, 232, 0.2));
+      border-color: rgba(255, 255, 255, 0.2);
+    }
 
-.scene.current::before {
-  transform: scaleY(1);
-}
+    .scene.current::before {
+      transform: scaleY(1);
+    }
 
-.scene .text {
-  display: block;
-  padding: 14px 16px 14px 20px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #fff;
-  font-weight: 500;
-  user-select: none;
-  -webkit-user-select: none;
-}
+    .scene .text {
+      display: block;
+      padding: 14px 16px 14px 20px;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #fff;
+      font-weight: 500;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-/* ============================================
+    /* ============================================
    VIEW CONTROLS (Bottom Center)
    ============================================ */
-.viewControls {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 1000;
-  background: rgba(10,10,20,0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 10px 14px;
-  border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
+    .viewControls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 1000;
+      background: rgba(10, 10, 20, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 10px 14px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
 
-body.view-control-buttons .viewControls {
-  display: flex;
-}
+    body.view-control-buttons .viewControls {
+      display: flex;
+    }
 
-.viewControlButton {
-  width: 42px;
-  height: 42px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid rgba(255,255,255,0.1);
-  user-select: none;
-  -webkit-user-select: none;
-}
+    .viewControlButton {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-.viewControlButton:hover {
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.08);
-  border-color: rgba(255,255,255,0.2);
-}
+    .viewControlButton:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
 
-.viewControlButton:active {
-  transform: scale(0.92);
-}
+    .viewControlButton:active {
+      transform: scale(0.92);
+    }
 
-.viewControlButton svg {
-  width: 20px;
-  height: 20px;
-  opacity: 0.9;
-  flex-shrink: 0;
-}
+    .viewControlButton svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
 
-.viewControlButton:hover svg {
-  opacity: 1;
-}
+    .viewControlButton:hover svg {
+      opacity: 1;
+    }
 
-/* ============================================
+    /* ============================================
    HOTSPOTS
    ============================================ */
-.link-hotspot {
-  width: 60px;
-  height: 60px;
-  margin-left: -30px;
-  margin-top: -30px;
-  opacity: 0.9;
-  transition: opacity 0.2s, transform 0.2s;
-  cursor: pointer;
-}
+    .link-hotspot {
+      width: 60px;
+      height: 60px;
+      margin-left: -30px;
+      margin-top: -30px;
+      opacity: 0.9;
+      transition: opacity 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
 
-.link-hotspot:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
+    .link-hotspot:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
 
-.link-hotspot-icon {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-}
+    .link-hotspot-icon {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    }
 
-.link-hotspot-tooltip {
-  position: absolute;
-  left: 100%;
-  top: 14px;
-  margin-left: 8px;
-  font-size: 14px;
-  max-width: 250px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: rgba(10,10,20,0.95);
-  backdrop-filter: blur(10px);
-  color: #fff;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: opacity 0.3s, transform 0.3s;
-  pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
+    .link-hotspot-tooltip {
+      position: absolute;
+      left: 100%;
+      top: 14px;
+      margin-left: 8px;
+      font-size: 14px;
+      max-width: 250px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(10, 10, 20, 0.95);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: all;
-}
+    .no-touch .link-hotspot:hover .link-hotspot-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
 
-/* Info Hotspots */
-.info-hotspot {
-  line-height: 1.2em;
-  opacity: 0.9;
-  transition: opacity 0.2s;
-}
+    /* Info Hotspots */
+    .info-hotspot {
+      line-height: 1.2em;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
 
-.info-hotspot:hover {
-  opacity: 1;
-}
+    .info-hotspot:hover {
+      opacity: 1;
+    }
 
-.info-hotspot-header {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: rgba(76,110,245,0.9);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
+    .info-hotspot-header {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: rgba(76, 110, 245, 0.9);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
 
-.info-hotspot-header:hover {
-  background: rgba(112,72,232,0.9);
-  transform: scale(1.05);
-}
+    .info-hotspot-header:hover {
+      background: rgba(112, 72, 232, 0.9);
+      transform: scale(1.05);
+    }
 
-/* ============================================
+    /* ============================================
    MOBILE RESPONSIVE
    ============================================ */
-@media (max-width: 768px) {
-  #titleBar {
-    height: 50px;
-    padding: 0 65px 0 60px;
-  }
-  
-  #titleBar .sceneName {
-    font-size: 14px;
-  }
-  
-  .topControlButton {
-    width: 46px;
-    height: 46px;
-  }
-  
-  .topControlButton svg.icon {
-    width: 22px;
-    height: 22px;
-  }
-  
-  #autorotateToggle {
-    right: 62px;
-  }
-  
-  #sceneList {
-    width: 100%;
-    max-width: 320px;
-    left: -100%;
-    top: 60px;
-    max-height: calc(100vh - 70px);
-    border-radius: 0 16px 16px 0;
-  }
-  
-  #sceneList.enabled {
-    left: 0;
-  }
-  
-  .viewControls {
-    bottom: 15px;
-    padding: 8px 10px;
-    gap: 6px;
-  }
-  
-  .viewControlButton {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .viewControlButton svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .link-hotspot {
-    width: 70px;
-    height: 70px;
-    margin-left: -35px;
-    margin-top: -35px;
-  }
-  
-  .info-hotspot-header {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-  }
-}
+    @media (max-width: 768px) {
+      #titleBar {
+        height: 50px;
+        padding: 0 65px 0 60px;
+      }
 
-@media (max-width: 600px) {
-  body.view-control-buttons .viewControls {
-    display: none;
-  }
-}
+      #titleBar .sceneName {
+        font-size: 14px;
+      }
 
-@media (max-width: 480px) {
-  #titleBar {
-    padding: 0 55px;
-  }
-  
-  #titleBar .sceneName {
-    font-size: 12px;
-  }
-  
-  .topControlButton {
-    width: 42px;
-    height: 42px;
-  }
-  
-  .topControlButton svg.icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  #autorotateToggle {
-    right: 56px;
-  }
-  
-  .scene .text {
-    font-size: 13px;
-    padding: 12px 14px 12px 18px;
-  }
-}
+      #titleBar .title-logo {
+        height: 30px;
+        margin-right: 10px;
+      }
 
-/* ============================================
+      .topControlButton {
+        width: 46px;
+        height: 46px;
+      }
+
+      .topControlButton svg.icon {
+        width: 22px;
+        height: 22px;
+      }
+
+      #autorotateToggle {
+        right: 62px;
+      }
+
+      #sceneList {
+        width: 100%;
+        max-width: 320px;
+        left: -100%;
+        top: 60px;
+        max-height: calc(100vh - 70px);
+        border-radius: 0 16px 16px 0;
+      }
+
+      #sceneList.enabled {
+        left: 0;
+      }
+
+      .viewControls {
+        bottom: 15px;
+        padding: 8px 10px;
+        gap: 6px;
+      }
+
+      .viewControlButton {
+        width: 38px;
+        height: 38px;
+      }
+
+      .viewControlButton svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .link-hotspot {
+        width: 70px;
+        height: 70px;
+        margin-left: -35px;
+        margin-top: -35px;
+      }
+
+      .info-hotspot-header {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body.view-control-buttons .viewControls {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #titleBar {
+        padding: 0 60px 0 55px;
+      }
+
+      body.fullscreen-enabled #titleBar {
+        padding-right: 150px;
+        /* Space for 3 buttons */
+      }
+
+      #titleBar .sceneName {
+        font-size: 12px;
+      }
+
+      .topControlButton {
+        width: 42px;
+        height: 42px;
+      }
+
+      .topControlButton svg.icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Mobile Positioning (42px + ~4px gap = 46px step) */
+      /* Slot 1: 10px (Contact) */
+      /* Slot 2: 56px */
+      /* Slot 3: 102px */
+
+      #contactToggle {
+        right: 10px;
+      }
+
+      #fullscreenToggle {
+        right: 56px;
+      }
+
+      /* Default: Autorotate at Slot 2 */
+      #autorotateToggle {
+        right: 56px;
+      }
+
+      /* When fullscreen is enabled, shift Autorotate to Slot 3 */
+      body.fullscreen-enabled #autorotateToggle {
+        right: 102px;
+      }
+
+      .scene .text {
+        font-size: 13px;
+        padding: 12px 14px 12px 18px;
+      }
+    }
+
+    /* Developer Modal Styles */
+    #developerModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 11000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #developerModal.visible {
+      display: flex;
+      opacity: 1;
+    }
+
+    .dev-card {
+      background: rgba(15, 15, 25, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transform: translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    #developerModal.visible .dev-card {
+      transform: translateY(0);
+    }
+
+    .dev-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dev-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .dev-close svg {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+
+    .dev-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      background: linear-gradient(135deg, #4c6ef5, #7048e8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .dev-subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .dev-info {
+      margin-bottom: 25px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .dev-info p {
+      margin: 5px 0;
+    }
+
+    .dev-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .dev-link {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .dev-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .dev-link svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: fill 0.3s;
+    }
+
+    .dev-link:hover svg {
+      fill: #4c6ef5;
+    }
+
+    /* ============================================
    INFO HOTSPOT MODAL (Mobile)
    ============================================ */
-.info-hotspot-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 10000;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+    .info-hotspot-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
 
-.info-hotspot-modal.visible {
-  display: block;
-  opacity: 1;
-}
+    .info-hotspot-modal.visible {
+      display: block;
+      opacity: 1;
+    }
 
-.mobile .info-hotspot-modal {
-  display: none;
-}
+    .mobile .info-hotspot-modal {
+      display: none;
+    }
 
-.mobile .info-hotspot-modal.visible {
-  display: block;
-}
+    .mobile .info-hotspot-modal.visible {
+      display: block;
+    }
 
-/* Desktop info hotspot styles */
-.desktop .info-hotspot.visible .info-hotspot-header {
-  width: 260px;
-  border-radius: 5px;
-  border-bottom-left-radius: 0;
-}
+    /* Desktop info hotspot styles */
+    .desktop .info-hotspot.visible .info-hotspot-header {
+      width: 260px;
+      border-radius: 5px;
+      border-bottom-left-radius: 0;
+    }
 
-.info-hotspot-text {
-  display: none;
-  background: rgba(10,10,20,0.95);
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 8px;
-  max-width: 300px;
-}
+    .info-hotspot-text {
+      display: none;
+      background: rgba(10, 10, 20, 0.95);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px;
+      max-width: 300px;
+    }
 
-.desktop .info-hotspot.visible .info-hotspot-text {
-  display: block;
-}
+    .desktop .info-hotspot.visible .info-hotspot-text {
+      display: block;
+    }
 
-/* Touch device optimizations */
-body.touch .topControlButton:hover {
-  transform: none;
-}
+    /* Touch device optimizations */
+    body.touch .topControlButton:hover {
+      transform: none;
+    }
 
-body.touch .viewControlButton:hover {
-  transform: none;
-}
+    body.touch .viewControlButton:hover {
+      transform: none;
+    }
 
-/* Hide scene list on single scene */
-body.single-scene #sceneList,
-body.single-scene #sceneListToggle {
-  display: none;
-}
-</style>
+    /* Hide scene list on single scene */
+    body.single-scene #sceneList,
+    body.single-scene #sceneListToggle {
+      display: none;
+    }
+  </style>
 </head>
+
 <body class="multiple-scenes view-control-buttons">
 
-<div id="pano"></div>
+  <div id="pano"></div>
 
-<!-- Title Bar -->
-<div id="titleBar">
-  <h1 class="sceneName"></h1>
-</div>
+  <!-- Title Bar -->
+  <div id="titleBar">
+    <img src="img/university-logo.png" class="title-logo" alt="MSCB University Logo">
+    <h1 class="sceneName"></h1>
+  </div>
 
-<!-- Top Control Buttons -->
-<a href="javascript:void(0)" id="sceneListToggle" class="topControlButton" title="Toggle Scene List">
-  <svg class="icon off" viewBox="0 0 24 24" fill="white">
-    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-  </svg>
-  <svg class="icon on" viewBox="0 0 24 24" fill="white">
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-  </svg>
-</a>
-
-<a href="javascript:void(0)" id="autorotateToggle" class="topControlButton" title="Auto-rotate">
-  <svg class="icon off" viewBox="0 0 24 24" fill="white">
-    <path d="M8 5v14l11-7z"/>
-  </svg>
-  <svg class="icon on" viewBox="0 0 24 24" fill="white">
-    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-  </svg>
-</a>
-
-<a href="javascript:void(0)" id="fullscreenToggle" class="topControlButton" title="Fullscreen">
-  <svg class="icon off" viewBox="0 0 24 24" fill="white">
-    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-  </svg>
-  <svg class="icon on" viewBox="0 0 24 24" fill="white">
-    <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
-  </svg>
-</a>
-
-<!-- Scene List Sidebar -->
-<div id="sceneList">
-  <ul class="scenes">
-    <!-- Scene items will be populated from data.js -->
-  </ul>
-</div>
-
-<!-- View Control Buttons -->
-<div class="viewControls">
-  <a href="javascript:void(0)" id="viewUp" class="viewControlButton" title="Look Up">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+  <!-- Top Control Buttons -->
+  <a href="javascript:void(0)" id="sceneListToggle" class="topControlButton" title="Toggle Scene List">
+    <svg class="icon off" viewBox="0 0 24 24" fill="white">
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+    </svg>
+    <svg class="icon on" viewBox="0 0 24 24" fill="white">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
     </svg>
   </a>
-  <a href="javascript:void(0)" id="viewLeft" class="viewControlButton" title="Look Left">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/>
-    </svg>
-  </a>
-  <a href="javascript:void(0)" id="viewIn" class="viewControlButton" title="Zoom In">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-    </svg>
-  </a>
-  <a href="javascript:void(0)" id="viewOut" class="viewControlButton" title="Zoom Out">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M19 13H5v-2h14v2z"/>
-    </svg>
-  </a>
-  <a href="javascript:void(0)" id="viewRight" class="viewControlButton" title="Look Right">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
-    </svg>
-  </a>
-  <a href="javascript:void(0)" id="viewDown" class="viewControlButton" title="Look Down">
-    <svg viewBox="0 0 24 24" fill="white">
-      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
-    </svg>
-  </a>
-</div>
 
-<!-- Required Scripts -->
-<script src="vendor/screenfull.min.js"></script>
-<script src="vendor/bowser.min.js"></script>
-<script src="vendor/marzipano.js"></script>
-<script src="data.js"></script>
-<script src="index.js"></script>
+  <a href="javascript:void(0)" id="autorotateToggle" class="topControlButton" title="Auto-rotate">
+    <svg class="icon off" viewBox="0 0 24 24" fill="white">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+    <svg class="icon on" viewBox="0 0 24 24" fill="white">
+      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+    </svg>
+  </a>
+
+  <a href="javascript:void(0)" id="fullscreenToggle" class="topControlButton" title="Fullscreen">
+    <svg class="icon off" viewBox="0 0 24 24" fill="white">
+      <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+    </svg>
+    <svg class="icon on" viewBox="0 0 24 24" fill="white">
+      <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
+    </svg>
+  </a>
+
+  <a href="javascript:void(0)" id="contactToggle" class="topControlButton" title="About Developer">
+    <svg class="icon" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+    </svg>
+  </a>
+
+  <!-- Scene List Sidebar -->
+  <div id="sceneList">
+    <div class="search-container">
+      <input type="text" id="sceneSearch" placeholder="Search scenes...">
+      <ul class="scenes">
+        <!-- Scene items will be populated from data.js -->
+      </ul>
+    </div>
+
+    <!-- View Control Buttons -->
+    <div class="viewControls">
+      <a href="javascript:void(0)" id="viewUp" class="viewControlButton" title="Look Up">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+        </svg>
+      </a>
+      <a href="javascript:void(0)" id="viewLeft" class="viewControlButton" title="Look Left">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
+        </svg>
+      </a>
+      <a href="javascript:void(0)" id="viewIn" class="viewControlButton" title="Zoom In">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+      </a>
+      <a href="javascript:void(0)" id="viewOut" class="viewControlButton" title="Zoom Out">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M19 13H5v-2h14v2z" />
+        </svg>
+      </a>
+      <a href="javascript:void(0)" id="viewRight" class="viewControlButton" title="Look Right">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+        </svg>
+      </a>
+      <a href="javascript:void(0)" id="viewDown" class="viewControlButton" title="Look Down">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Developer Modal -->
+    <div id="developerModal">
+      <div class="dev-card">
+        <div class="dev-close" id="devClose">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
+        </div>
+        <div class="dev-title">Abinash Sharma</div>
+        <div class="dev-subtitle">Developer</div>
+        <div class="dev-info">
+          <p>Department Of Computer Application</p>
+          <p>Batch - 2023-25</p>
+        </div>
+        <div class="dev-links">
+          <a href="https://github.com/abinasharma001" target="_blank" class="dev-link" title="GitHub">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/contactabinashsharma/" target="_blank" class="dev-link" title="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Required Scripts -->
+    <script src="vendor/screenfull.min.js"></script>
+    <script src="vendor/bowser.min.js"></script>
+    <script src="vendor/marzipano.js"></script>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
 
 </body>
+
 </html>

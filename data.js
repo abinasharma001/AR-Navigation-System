@@ -1,7 +1,7 @@
 var APP_DATA = {
   "scenes": [
     {
-      "id": "0-welcome-to-maharaja-sriram-chandra-bhanja-deo-university--campus-virtual-tour",
+      "id": "0-mscb-university-virtual-tour",
       "name": "Welcome To Maharaja Sriram Chandra Bhanja Deo University ( Campus Virtual Tour)",
       "levels": [
         {
@@ -76,7 +76,7 @@ var APP_DATA = {
           "yaw": 0.9099942901238727,
           "pitch": 0.12984035391088078,
           "rotation": 1.5707963267948966,
-          "target": "0-welcome-to-maharaja-sriram-chandra-bhanja-deo-university--campus-virtual-tour"
+          "target": "0-mscb-university-virtual-tour"
         }
       ],
       "infoHotspots": []
@@ -649,7 +649,7 @@ var APP_DATA = {
           "yaw": -2.0425495032931344,
           "pitch": 0.14604455786506065,
           "rotation": 4.71238898038469,
-          "target": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo"
+          "target": "34-statue-of-maharaja"
         }
       ],
       "infoHotspots": []
@@ -818,7 +818,7 @@ var APP_DATA = {
           "yaw": 1.0981789384120546,
           "pitch": 0.27305752556224405,
           "rotation": 1.5707963267948966,
-          "target": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo"
+          "target": "34-statue-of-maharaja"
         },
         {
           "yaw": -2.7893341042824993,
@@ -858,7 +858,7 @@ var APP_DATA = {
           "yaw": -0.8717871764820089,
           "pitch": 0.057114389343475125,
           "rotation": 4.71238898038469,
-          "target": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo"
+          "target": "34-statue-of-maharaja"
         }
       ],
       "infoHotspots": []
@@ -1095,7 +1095,7 @@ var APP_DATA = {
           "yaw": -0.9819365967349611,
           "pitch": 0.16131006915536972,
           "rotation": 4.71238898038469,
-          "target": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo"
+          "target": "34-statue-of-maharaja"
         }
       ],
       "infoHotspots": []
@@ -1313,7 +1313,7 @@ var APP_DATA = {
           "yaw": 0.04573940763123119,
           "pitch": 0.2304038317627306,
           "rotation": 0,
-          "target": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo"
+          "target": "34-statue-of-maharaja"
         },
         {
           "yaw": -0.04840340204502169,
@@ -1325,7 +1325,7 @@ var APP_DATA = {
       "infoHotspots": []
     },
     {
-      "id": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo",
+      "id": "34-statue-of-maharaja",
       "name": "Statue Of Maharaja Sri Ram Chandra Bhanja Deo",
       "levels": [
         {
@@ -1902,7 +1902,7 @@ var APP_DATA = {
           "yaw": 0.018729290562873757,
           "pitch": 0.18422506396689542,
           "rotation": 0,
-          "target": "34-statue-of-maharaja-sri-ram-chandra-bhanja-deo"
+          "target": "34-statue-of-maharaja"
         },
         {
           "yaw": -3.046256302836456,

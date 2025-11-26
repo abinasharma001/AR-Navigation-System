@@ -136,6 +136,36 @@ body {
   background: rgba(255,255,255,0.3);
 }
 
+.search-container {
+  padding: 15px 10px 5px 10px;
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 10;
+}
+
+#sceneSearch {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#sceneSearch:focus {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 0 0 2px rgba(102,126,234,0.3);
+}
+
+#sceneSearch::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
 .scenes {
   list-style: none;
   padding: 10px;
